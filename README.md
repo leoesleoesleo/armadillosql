@@ -21,8 +21,8 @@ Armadillosql es una solución rápida para manipular datos en diferentes motores
 Las características clave son:
 
 * **Rápido**: Alto rendimiento para hacer ingestas masivas con sqlalchemy, usa la tenica de cargas por lotes para hacer insersion de grandes volumnes de datos.
-* **Rápido para codificar :**: aumente la velocidad para desarrollar soluciones BI y análitica entre un 100% y un 200%. *
-* **Menos errores**: Reduzca aproximadamente el 40% de los errores inducidos por humanos (desarrolladores). * 
+* **Rápido para codificar**: aumente la velocidad para desarrollar soluciones BI y análitica entre un 100% y un 200%. 
+* **Menos errores**: Reduzca aproximadamente el 40% de los errores inducidos por humanos (desarrolladores). 
 * **Fácil**: Diseñado para que sea fácil de usar y aprender. Menos tiempo leyendo documentos.
 * **Corto**: Minimiza la duplicación de código. Varias características de cada declaración de parámetro. Menos errores.
 
