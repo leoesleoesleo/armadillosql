@@ -126,6 +126,23 @@ no retorna resultados
 """
 df = sql.executeFile(folder + 'query.sql',params,devolucion=True)
 ```
+## Estructura Recomendada
+
+```Python
+rutinas_sql 
+	-------------- query1.sql
+	-------------- query2.sql
+	-------------- query3.sql
+conexion
+	-------------- coneccion_mysql.json
+	-------------- coneccion_postgresql.json
+ficheros
+	-------------- df1.csv
+	-------------- df2.csv		
+log.log
+armadillosql.py	
+main.py
+```
 
 ## Licencia
 
