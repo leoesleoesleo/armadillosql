@@ -38,9 +38,12 @@ ArmadilloSQL se apoya en los hombros de gigantes::
 
 ## Ejemplo de uso
 
-### Create
-
-- Para Mysql crear archivo `coneccion_mysql.json` con la siguiente estructura:
+- Carpeta conexion para almacenar todos los archivos de cadenas de conexión .json
+	```
+	mkdir conexion && cd conexion
+	```
+	
+- Para Mysql el archivo `coneccion_mysql.json` tiene la siguiente estructura:
 
 	```Javascript
 	{   
@@ -48,13 +51,14 @@ ArmadilloSQL se apoya en los hombros de gigantes::
 		"database_username" : "root" ,
 		"database_password" : "" ,
 		"database_ip" : "localhost",
-		"database_name" : "prueba",
-		"database_driver": "mysql+mysqlconnector" ,	
+		"database_name" : "information_schema",
+		"database_driver": "mysql+mysqlconnector",
+		"database_port" : 3306,	
 		"database_options" : "" 
-	}
+	 }
 	```
 
-- Para PostgreSQL  crear archivo `coneccion_postgresql.json` con la siguiente estructura:
+- Para PostgreSQL el archivo `coneccion_postgresql.json` tiene la siguiente estructura:
 
 	```Javascript
 	{
@@ -68,7 +72,7 @@ ArmadilloSQL se apoya en los hombros de gigantes::
 	}
 	```
 
-- Crear carpeta rutinas_sql para almacenar todos los archivos .sql
+- Carpeta rutinas_sql para almacenar todos los archivos .sql
 	```
 	mkdir rutinas_sql && cd rutinas_sql
 	```
@@ -84,34 +88,45 @@ ArmadilloSQL se apoya en los hombros de gigantes::
 	pip install -r requirements.txt
 	```
 
-- Crear archivo `main.py` con:
+- Archivo `main.py` tiene:
 
 ```Python
+# PASO 1 IMPORTAR LIBRERIA
 from armadillosql import Armadillosql
+import json
 
-def get_config(self,bd):
+# PASO 2 CREAR FUNCION PARA CONSULTAR LA CADENA DE CONEXIÓN
+def get_config(bd):
 	"""
 	Recibe el nombre de la conexión json creada anteriormente
 	"""
 	try:            
-		with open(bd+'.json') as f_in:
+		with open('conexion/' + bd +'.json') as f_in: 
 			json_str = f_in.read()
 			return json.loads(json_str)
 	except:
 		return "error"
 
-#Instancia armadillosql
+# PASO 3 INSTANCIA DE armadillosql
 try:
-	sql = Armadillosql(get_config('coneccion_mysql'),log) 
+	sql = Armadillosql(get_config('coneccion_mysql')) 
 except Exception as e:
-	alert("[Error] Problemas con la cadena de conexión" + str(e))
+	print("[Error] Problemas con la cadena de conexión " + str(e))
 
-#uso de armadillosql
+
+#PASO 4 DECLARAR VARIABLE CON LA UBICACIÓN DE LAS RUTINAS Y DIC CON LOS PARAMETROS
 folder = 'rutinas_sql/'
-params = {"periodo" : '2021-01-01'}
+params = {"variable" : 'GLOBAL'}
+
+#PASO 5 USANDO UNO DE LOS METODOS DE LA LIBRERIA
+"""
+Ejecuta un archivo especificado en filePath si tiene 
+devolucion entonces retorna un df de lo contrario
+no retorna resultados
+"""
 df = sql.executeFile(folder + 'query.sql',params,devolucion=True)
 ```
 
-## License
+## Licencia
 
 Este proyecto tiene la licencia de acuerdo con los términos de la licencia del MIT.
