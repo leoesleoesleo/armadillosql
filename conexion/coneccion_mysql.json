@@ -1,0 +1,10 @@
+{   
+ 	"database_motor": "mysql", 
+ 	"database_username" : "root" ,
+ 	"database_password" : "" ,
+ 	"database_ip" : "localhost",
+ 	"database_name" : "information_schema",
+ 	"database_driver": "mysql+mysqlconnector",
+ 	"database_port" : 3306,	
+ 	"database_options" : "" 
+ }
