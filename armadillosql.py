@@ -115,7 +115,7 @@ class Armadillosql():
         
     def listar_sql(self,query,fichero=False,nombre=False):
         """Ejecuta un query y lo convierte a objeto pandas, si fichero es True entonces lo 
-           guarda en la carpeta salidas"""
+           guarda en la carpeta ficheros"""
         try:            
             res = self.execute(query,param='interno')            
             data = pd.DataFrame(data=res) 
@@ -125,8 +125,8 @@ class Armadillosql():
                     nombre = time.strftime('%Y%m%d%H%M%S')
                 else:
                     nombre = nombre
-                data.to_csv('salidas/' + str(nombre) + '.csv', header=True, index=False)
-                msg = "Archivo " + str(nombre) + " generado en la carpeta salidas correctamente"
+                data.to_csv('ficheros/' + str(nombre) + '.csv', header=True, index=False)
+                msg = "Archivo " + str(nombre) + " generado en la carpeta ficheros correctamente"
                 self.log.info(msg)   
                 self.escribirLog_config("[Info] " + msg)                 
                 return "Archivo generado correctamente"
